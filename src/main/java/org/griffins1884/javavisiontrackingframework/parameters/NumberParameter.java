@@ -16,6 +16,15 @@ public class NumberParameter extends Parameter {
     public double getValue() {
         return value;
     }
+    public double getDoubleValue() {
+        return value;
+    }
+    public int getIntValue() {
+        return (int) value;
+    }
+    public float getFloatValue() {
+        return (float) value;
+    }
     public void setValue(double value) {
         if(value < this.min || value > this.max) {
             throw new IllegalArgumentException("The value was outside the allowable range");

@@ -79,9 +79,6 @@ public class App {
             if(returnValue == null) {
                 return;
             }
-            if(input instanceof Mat) {
-                ((Mat) input).release();
-            }
             input = returnValue;
         }
     }

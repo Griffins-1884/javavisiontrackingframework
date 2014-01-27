@@ -1,5 +1,6 @@
 package org.griffins1884.javavisiontrackingframework.ui.widgets;
 
+import java.awt.Dimension;
 import java.util.Hashtable;
 
 import javax.swing.JLabel;
@@ -33,16 +34,31 @@ public class NumberParameterSlider extends Widget implements ChangeListener {
         slider.setLabelTable(labelTable);
         slider.setPaintLabels(true);
         slider.addChangeListener(this);
+        slider.setPreferredSize(new Dimension(600, 40));
         this.add(slider);
     }
     public void setParameterValue(double parameterValue) {
         slider.setValue(computeSliderValue(parameterValue));
     }
     private int computeSliderValue(double parameterValue) {
-        return (int) ((SLIDER_MAX - SLIDER_MIN) * (parameterValue - parameter.getMin()) / (parameter.getMax() - parameter.getMin()) + SLIDER_MIN);
+        double min = parameter.getMin(), max = parameter.getMax();
+        if(min == Double.NEGATIVE_INFINITY) {
+            min = -1000;
+        }
+        if(max == Double.POSITIVE_INFINITY) {
+            max = 1000;
+        }
+        return (int) ((SLIDER_MAX - SLIDER_MIN) * (parameterValue - min) / (max - min) + SLIDER_MIN);
     }
     private double computeParameterValue(int sliderValue) {
-        return (parameter.getMax() - parameter.getMin()) * (sliderValue - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN) + parameter.getMin();
+        double min = parameter.getMin(), max = parameter.getMax();
+        if(min == Double.NEGATIVE_INFINITY) {
+            min = -1000;
+        }
+        if(max == Double.POSITIVE_INFINITY) {
+            max = 1000;
+        }
+        return (max - min) * (sliderValue - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN) + min;
     }
     public void stateChanged(ChangeEvent ev) {
         int sliderValue = ((JSlider) ev.getSource()).getValue();

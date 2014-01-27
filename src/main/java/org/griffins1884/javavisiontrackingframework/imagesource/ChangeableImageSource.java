@@ -37,7 +37,7 @@ public class ChangeableImageSource implements ImageSource {
         if(major.equals("webcam")) {
             source = WebcamImageSource.getWebcam(minor);
         } else if(major.equals("still image")) {
-            source = new StillImageSource("minor");
+            source = new StillImageSource(minor);
         }
     }
     
