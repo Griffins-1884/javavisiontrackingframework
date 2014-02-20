@@ -21,7 +21,7 @@ public class StringParameterEditor extends Widget implements ActionListener {
     }
     
     public void init() {
-        this.textField = new JTextField(20);
+        this.textField = new JTextField(60);
         this.textField.addActionListener(this);
         this.add(textField);
     }

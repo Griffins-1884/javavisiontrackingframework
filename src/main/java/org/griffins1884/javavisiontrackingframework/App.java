@@ -38,7 +38,7 @@ public class App {
     }
     
     public static void addComponent(AppComponent c) {
-        if(components.size() > 0 && !c.inputType.equals(components.get(components.size() - 1))) {
+        if(components.size() > 0 && !c.inputType.equals(components.get(components.size() - 1).returnType)) {
             throw new IllegalArgumentException("Class does not input the previous return type");
         }
         components.add(c);

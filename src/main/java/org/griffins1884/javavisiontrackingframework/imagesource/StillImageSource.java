@@ -22,7 +22,6 @@ public class StillImageSource implements ImageSource {
 //        image = Highgui.imread(this.filename);
         BufferedImage bufferedImage;
         try {
-            System.out.println(new File(filename).getAbsolutePath());
             bufferedImage = ImageIO.read(new File(filename));
             byte[] imageData = ((DataBufferByte) bufferedImage.getRaster().getDataBuffer()).getData();
             image = new Mat(bufferedImage.getHeight(), bufferedImage.getWidth(), CvType.CV_8UC3);
